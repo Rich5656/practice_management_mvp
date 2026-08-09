@@ -1,0 +1,53 @@
+<div>
+  <h1>Create your account</h1>
+
+<%= form_with model: @user, url: sign_up_path do |user_form| %>
+  <% if @user.errors.any? || @firm.errors.any? %>
+    <div>
+      <h2>There were some problems:</h2>
+
+      <ul>
+        <% @user.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+
+        <% @firm.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= label_tag "firm_name", "Firm name" %>
+    <%= text_field_tag "firm[name]", @firm.name %>
+  </div>
+
+  <div>
+    <%= user_form.label :name, "Your name" %>
+    <%= user_form.text_field :name %>
+  </div>
+
+  <div>
+    <%= user_form.label :email_address, "Email" %>
+    <%= user_form.email_field :email_address %>
+  </div>
+
+  <div>
+    <%= user_form.label :password %>
+    <%= user_form.password_field :password %>
+  </div>
+
+  <div>
+    <%= user_form.label :password_confirmation %>
+    <%= user_form.password_field :password_confirmation %>
+  </div>
+
+  <%= user_form.submit "Create account" %>
+<% end %>
+
+<p>
+  Already have an account?
+  <%= link_to "Sign in", new_session_path %>
+</p>
+</div>

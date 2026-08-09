@@ -1,0 +1,26 @@
+<dvi>
+  <h1><%= @firm.name %></h1>
+
+  <p>Welcome, <%= Current.user.name %>.</p>
+
+  <h2>Clients</h2>
+
+  <%= link_to "View all clients", clients_path %>
+  <%= link_to "Add client", new_client_path %>
+
+  <% if @clients.any? %>
+    <ul>
+      <% @clients.each do |client| %>
+        <li>
+          <%= link_to client.name, client_path(client) %>
+
+          <% if client.company_name.present? %>
+            — <%= client.company_name %>
+          <% end %>
+        </li>
+      <% end %>
+    </ul>
+  <% else %>
+    <p>No clients yet.</p>
+  <% end %>
+</div>

@@ -1,0 +1,23 @@
+<div>
+  <h1>Clients</h1>
+
+  <%= link_to "New client", new_client_path %>
+
+  <% if @clients.any? %>
+    <ul>
+      <% @clients.each do |client| %>
+        <li>
+          <%= link_to client.name, client_path(client) %>
+
+          <% if client.company_name.present? %>
+            — <%= client.company_name %>
+          <% end %>
+        </li>
+      <% end %>
+    </ul>
+  <% else %>
+    <p>No clients yet.</p>
+  <% end %>
+
+  <%= link_to "Back to dashboard", root_path %>
+</div>
