@@ -5,6 +5,7 @@ class ClientsController < ApplicationController
 
   def show
     @client = Current.user.firm.clients.find(params[:id])
+    @recent_notes = @client.notes.order(created_at: :desc).limit(5)
   end
 
   def new

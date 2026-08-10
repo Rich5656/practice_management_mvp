@@ -1,0 +1,23 @@
+<div>
+  <h1>Notes for <%= @client.name %></h1>
+
+<%= form_with model: [@client, Note.new] do |form| %>
+  <div>
+    <%= form.label :content %>
+    <%= form.text_area :content %>
+  </div>
+
+  <%= form.submit "Add Note" %>
+<% end %>
+
+<hr>
+
+<% @notes.each do |note| %>
+  <article>
+    <p><%= note.content %></p>
+    <small><%= note.created_at.strftime("%B %-d, %Y") %></small>
+  </article>
+<% end %>
+
+<%= link_to "Back to Client", client_path(@client) %>
+</div>

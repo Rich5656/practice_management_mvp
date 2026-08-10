@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get "notes/index"
+  # get "notes/new"
   # get "clients/index"
   # get "clients/show"
   # get "clients/new"
@@ -15,7 +17,9 @@ Rails.application.routes.draw do
   get "/sign_up", to: "sign_ups#new"
   post "/sign_up", to: "sign_ups#create"
 
-  resources :clients
+  resources :clients do 
+    resources :notes, only: [:index, :create]
+  end
 
   root "dashboard#show"  
 

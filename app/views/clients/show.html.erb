@@ -23,4 +23,32 @@
       data: { turbo_confirm: "Are you sure?" } %>
 
   <%= link_to "Back to clients", clients_path %>
+
+  <hr>
+
+  <section>
+    <h2>Notes</h2>
+
+    <%= form_with model: [@client, Note.new] do |form| %>
+      <div>
+        <%= form.label :content, "Add a note" %>
+        <%= form.text_area :content %>
+      </div>
+
+      <%= form.submit "Add Note" %>
+    <% end %>
+
+    <% if @recent_notes.any? %>
+      <% @recent_notes.each do |note| %>
+        <article>
+          <p><%= note.content %></p>
+          <small><%= note.created_at.strftime("%B %-d, %Y") %></small>
+        </article>
+      <% end %>
+
+      <%= link_to "View all notes", client_notes_path(@client) %>
+    <% else %>
+      <p>No notes yet.</p>
+    <% end %>
+  </section>
 </div>
